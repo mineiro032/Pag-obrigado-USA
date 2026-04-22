@@ -12,14 +12,16 @@
         const btn = document.getElementById("btn");
         const loading = document.getElementById("loading");
 
-        btn.innerHTML = "Processando...";
+        btn.innerHTML = "Preparando acesso...";
         btn.disabled = true;
         loading.style.display = "block";
 
         setTimeout(() => {
             const params = window.location.search;
+            // ATENÇÃO: Recomendo trocar este encurtador pelo link direto do t.me/seu_bot
+            // Exemplo: const baseUrl = "https://t.me/SEU_BOT?start=botbrain";
             const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
-            window.location.href = baseUrl + params;
+            window.location.href = baseUrl + params.replace('?', '&');
         }, 800);
     }
     </script>
@@ -46,40 +48,37 @@
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
-            margin-top: 50px;
+            margin-top: 20px; /* Reduzido o margin-top */
         }
 
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #ec407a, #c2185b);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
+        .product-image {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 12px;
             margin: 0 auto 20px;
+            border: 2px solid #333;
         }
 
         .title {
-            font-size: 22px;
+            font-size: 24px; /* Aumentado levemente */
             font-weight: bold;
             color: #fff;
             margin-bottom: 15px;
         }
 
         .desc {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.5;
+            font-size: 15px; /* Aumentado levemente */
+            color: #ccc; /* Clareado levemente */
+            line-height: 1.6;
             margin-bottom: 25px;
         }
 
         .info-box {
             background: rgba(236, 64, 122, 0.1);
             border-radius: 8px;
-            padding: 10px;
-            font-size: 12px;
+            padding: 12px;
+            font-size: 13px;
             color: #ec407a;
             margin-bottom: 20px;
             border: 1px solid rgba(236, 64, 122, 0.2);
@@ -87,16 +86,16 @@
 
         button {
             width: 100%;
-            padding: 16px;
+            padding: 18px; /* Aumentado o padding */
             border: none;
             border-radius: 12px;
             background: linear-gradient(90deg, #ec407a, #d81b60);
             color: white;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
             text-transform: uppercase;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.2s;
         }
 
         button:active {
@@ -106,19 +105,20 @@
         #loading {
             display: none;
             margin-top: 15px;
-            font-size: 13px;
+            font-size: 14px;
             color: #ec407a;
         }
 
         .footer {
             margin-top: 40px;
-            font-size: 11px;
-            color: #666;
+            font-size: 12px;
+            color: #777;
             text-align: center;
+            padding-bottom: 20px;
         }
 
         .footer a {
-            color: #666;
+            color: #777;
             text-decoration: underline;
             margin: 0 5px;
         }
@@ -128,20 +128,21 @@
 <body>
 
 <div class="container">
-    <div class="logo">🚀</div>
-    <div class="title">Área de Acesso</div>
+    <img src="foto_anuncio.png" alt="BotBrain" class="product-image">
+    
+    <div class="title">Acesso ao Sistema BotBrain</div>
     
     <div class="desc">
-        Você está sendo redirecionado para a plataforma oficial. <br>
-        <strong>Confirme seu interesse abaixo para liberar o acesso ao sistema.</strong>
+        Você está prestes a liberar o robô que está mudando vidas. <br>
+        <strong>Clique abaixo para confirmar seu interesse e abrir o sistema no Telegram agora.</strong>
     </div>
 
     <div class="info-box">
-        🔒 Conexão segura e acesso imediato.
+        🔒 Conexão segura. O acesso é liberado em segundos via Telegram.
     </div>
 
     <button id="btn" onclick="continuar()">
-        DESBLOQUEAR ACESSO AGORA
+        ABRIR NO TELEGRAM AGORA
     </button>
 
     <div id="loading">
@@ -151,8 +152,8 @@
 
 <div class="footer">
     <p>© 2026 BotBrain - Todos os direitos reservados.</p>
-    <a href="#">Termos de Uso</a> • <a href="#">Privacidade</a>
-    <p style="margin-top: 10px;">contato@seudominio.com</p>
+    <a href="privacidade.html">Privacidade</a> • <a href="termos.html">Termos de Uso</a>
+    <p style="margin-top: 10px;">suporte@seudominio.com</p>
 </div>
 
 </body>
