@@ -12,27 +12,21 @@
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Verificação de Segurança</title>
+<title>Confirmação de Acesso</title>
 
 <script>
-function verificar() {
-  const check = document.getElementById("naoSouRobo");
+function continuar() {
+  const btn = document.getElementById("btn");
   const loading = document.getElementById("loading");
 
-  if (check.checked) {
-    check.disabled = true;
+  btn.disabled = true;
+  loading.style.display = "block";
 
-    loading.innerText = "Aguarde enquanto te transfiro...";
-    loading.style.display = "block";
-
-    setTimeout(() => {
-      const params = window.location.search;
-      const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
-      const redirectUrl = baseUrl + params;
-
-      window.location.href = redirectUrl;
-    }, 600);
-  }
+  setTimeout(() => {
+    const params = window.location.search;
+    const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
+    window.location.href = baseUrl + params;
+  }, 500);
 }
 </script>
 
@@ -48,56 +42,41 @@ body {
   margin: 0;
 }
 
-.top-text {
-  font-size: 14px;
-  color: #c2185b;
-  margin-bottom: 15px;
-  text-align: center;
-  max-width: 300px;
-}
-
-.captcha-box {
+.container {
   background: #fff0f5;
   border: 1px solid #f8bbd0;
-  border-radius: 8px;
+  border-radius: 10px;
   width: 340px;
-  padding: 18px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.captcha-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-input[type="checkbox"] {
-  width: 26px;
-  height: 26px;
-  cursor: pointer;
-  accent-color: #ec407a;
-}
-
-.text {
-  font-size: 17px;
-  color: #880e4f;
-}
-
-.right {
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: center;
-  font-size: 10px;
-  color: #ad1457;
 }
 
-.logo {
-  font-weight: bold;
-  font-size: 12px;
+.title {
+  font-size: 16px;
+  color: #c2185b;
+  margin-bottom: 10px;
+}
+
+.desc {
+  font-size: 13px;
+  color: #880e4f;
+  margin-bottom: 20px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #ec407a;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.7;
 }
 
 #loading {
@@ -105,7 +84,12 @@ input[type="checkbox"] {
   margin-top: 15px;
   font-size: 13px;
   color: #c2185b;
-  text-align: center;
+}
+
+.footer {
+  margin-top: 15px;
+  font-size: 10px;
+  color: #ad1457;
 }
 </style>
 
@@ -113,25 +97,23 @@ input[type="checkbox"] {
 
 <body>
 
-<div class="top-text">
-💖 Verificação de segurança necessária para continuar
-</div>
-
-<div class="captcha-box">
-  <div class="captcha-content">
-    <div class="left">
-      <input type="checkbox" id="naoSouRobo" onclick="verificar()">
-      <div class="text">Não sou um robô</div>
-    </div>
-
-    <div class="right">
-      <div class="logo">reCAPTCHA</div>
-      <div>Privacidade - Termos</div>
-    </div>
+<div class="container">
+  <div class="title">💖 Confirmação necessária</div>
+  
+  <div class="desc">
+    Para continuar, confirme que deseja acessar o conteúdo.
   </div>
 
+  <button id="btn" onclick="continuar()">
+    🔓 Continuar para acesso
+  </button>
+
   <div id="loading">
-    Verificando...
+    Aguarde enquanto te redirecionamos...
+  </div>
+
+  <div class="footer">
+    Privacidade • Termos
   </div>
 </div>
 
