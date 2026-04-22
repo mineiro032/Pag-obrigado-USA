@@ -12,14 +12,22 @@
         const btn = document.getElementById("btn");
         const loading = document.getElementById("loading");
 
-        btn.innerHTML = "Preparando acesso...";
+        btn.innerHTML = "Abrindo Telegram...";
         btn.disabled = true;
         loading.style.display = "block";
 
         setTimeout(() => {
-            const params = window.location.search;
-            const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
-            window.location.href = baseUrl + params.replace('?', '&');
+            // 1. Captura os parâmetros (UTMs) que vieram do anúncio do TikTok
+            const params = window.location.search; 
+            
+            // 2. Link direto do seu Bot com o ID da BotBrain
+            // O parâmetro 'start' é o que o bot lê para saber quem é o usuário/campanha
+            const baseUrl = "https://t.me/Larissa_Fuego_bot?start=9abbf197-407d-4848-9fce-792f8c924181";
+            
+            // 3. Concatena o link do bot com as UTMs (trocando o '?' por '&' se necessário)
+            const finalUrl = params ? baseUrl + "&" + params.substring(1) : baseUrl;
+            
+            window.location.href = finalUrl;
         }, 800);
     }
     </script>
@@ -49,21 +57,14 @@
             margin-top: 20px;
         }
 
-        /* ESTILO ATUALIZADO PARA FOTO CIRCULAR */
         .product-image {
-            /* Define um tamanho fixo igual para largura e altura */
             width: 150px; 
             height: 150px;
-            
-            /* Recorta a imagem para caber no círculo sem distorcer */
             object-fit: cover; 
-            
-            /* Faz o círculo perfeito */
             border-radius: 50%; 
-            
             margin: 0 auto 20px;
-            border: 3px solid #ec407a; /* Borda rosa para combinar */
-            display: block; /* Garante a centralização */
+            border: 3px solid #ec407a;
+            display: block;
         }
 
         .title {
@@ -104,10 +105,6 @@
             transition: all 0.2s;
         }
 
-        button:active {
-            transform: scale(0.98);
-        }
-
         #loading {
             display: none;
             margin-top: 15px;
@@ -117,40 +114,42 @@
 
         .footer {
             margin-top: 40px;
-            font-size: 12px;
-            color: #777;
+            font-size: 11px;
+            color: #666;
             text-align: center;
-            padding-bottom: 20px;
         }
 
-        .footer a {
-            color: #777;
-            text-decoration: underline;
-            margin: 0 5px;
-        }
+        .footer a { color: #666; margin: 0 5px; }
     </style>
 </head>
 
 <body>
 
 <div class="container">
-    <img src="foto_anuncio.png" alt="BotBrain" class="product-image">
+    <img src="foto_anuncio.jpg" alt="Acesso" class="product-image">
     
+    <div class="title">Acesso Liberado</div>
+    
+    <div class="desc">
+        Clique no botão abaixo para abrir o sistema diretamente no seu <strong>Telegram</strong>.
+    </div>
 
-    
+    <div class="info-box">
+        🔒 Verificado pela BotBrain.
+    </div>
 
     <button id="btn" onclick="continuar()">
-        ABRIR NO TELEGRAM AGORA
+        ABRIR TELEGRAM AGORA
     </button>
 
     <div id="loading">
-        Preparando seu ambiente seguro...
+        Conectando ao bot seguro...
     </div>
 </div>
 
 <div class="footer">
-    <p>© 2026  - Todos os direitos reservados.</p>
-    <a href="privacidade.html">Privacidade</a> • <a href="termos.html">Termos de Uso</a>
+    <p>© 2026 BotBrain - Todos os direitos reservados.</p>
+    <a href="#">Privacidade</a> • <a href="#">Termos</a>
 </div>
 
 </body>
