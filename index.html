@@ -1,120 +1,158 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
-<script
-  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-xcod-sck
-  data-utmify-prevent-subids
-  async
-  defer
-></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acesso Oficial | BotBrain</title>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Confirmação de Acesso</title>
+    <script>
+    function continuar() {
+        const btn = document.getElementById("btn");
+        const loading = document.getElementById("loading");
 
-<script>
-function continuar() {
-  const btn = document.getElementById("btn");
-  const loading = document.getElementById("loading");
+        btn.innerHTML = "Processando...";
+        btn.disabled = true;
+        loading.style.display = "block";
 
-  btn.disabled = true;
-  loading.style.display = "block";
+        setTimeout(() => {
+            const params = window.location.search;
+            const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
+            window.location.href = baseUrl + params;
+        }, 800);
+    }
+    </script>
 
-  setTimeout(() => {
-    const params = window.location.search;
-    const baseUrl = "https://encurtar-link.click/l/bot-d6112058";
-    window.location.href = baseUrl + params;
-  }, 500);
-}
-</script>
+    <style>
+        body {
+            background: #0f0f0f; /* Cor escura premium (cyber/tech) */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
 
-<style>
-body {
-  background: #ffe4ec;
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-}
+        .container {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+            margin-top: 50px;
+        }
 
-.container {
-  background: #fff0f5;
-  border: 1px solid #f8bbd0;
-  border-radius: 10px;
-  width: 340px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  text-align: center;
-}
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ec407a, #c2185b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 20px;
+        }
 
-.title {
-  font-size: 16px;
-  color: #c2185b;
-  margin-bottom: 10px;
-}
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
 
-.desc {
-  font-size: 13px;
-  color: #880e4f;
-  margin-bottom: 20px;
-}
+        .desc {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
 
-button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  background: #ec407a;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+        .info-box {
+            background: rgba(236, 64, 122, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 12px;
+            color: #ec407a;
+            margin-bottom: 20px;
+            border: 1px solid rgba(236, 64, 122, 0.2);
+        }
 
-button:disabled {
-  opacity: 0.7;
-}
+        button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #ec407a, #d81b60);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-#loading {
-  display: none;
-  margin-top: 15px;
-  font-size: 13px;
-  color: #c2185b;
-}
+        button:active {
+            transform: scale(0.98);
+        }
 
-.footer {
-  margin-top: 15px;
-  font-size: 10px;
-  color: #ad1457;
-}
-</style>
+        #loading {
+            display: none;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #ec407a;
+        }
 
+        .footer {
+            margin-top: 40px;
+            font-size: 11px;
+            color: #666;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #666;
+            text-decoration: underline;
+            margin: 0 5px;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="container">
-  <div class="title">💖 Confirmação necessária</div>
-  
-  <div class="desc">
-    Para continuar, confirme que deseja acessar o conteúdo.
-  </div>
+    <div class="logo">🚀</div>
+    <div class="title">Área de Acesso</div>
+    
+    <div class="desc">
+        Você está sendo redirecionado para a plataforma oficial. <br>
+        <strong>Confirme seu interesse abaixo para liberar o acesso ao sistema.</strong>
+    </div>
 
-  <button id="btn" onclick="continuar()">
-    🔓 Continuar para acesso
-  </button>
+    <div class="info-box">
+        🔒 Conexão segura e acesso imediato.
+    </div>
 
-  <div id="loading">
-    Aguarde enquanto te redirecionamos...
-  </div>
+    <button id="btn" onclick="continuar()">
+        DESBLOQUEAR ACESSO AGORA
+    </button>
 
-  <div class="footer">
-    Privacidade • Termos
-  </div>
+    <div id="loading">
+        Preparando seu ambiente seguro...
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 BotBrain - Todos os direitos reservados.</p>
+    <a href="#">Termos de Uso</a> • <a href="#">Privacidade</a>
+    <p style="margin-top: 10px;">contato@seudominio.com</p>
 </div>
 
 </body>
