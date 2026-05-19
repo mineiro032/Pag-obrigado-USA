@@ -364,40 +364,36 @@ Atendimento Nota 1000.
 
 <!-- BOTBRAIN -->
 <script>
-let BOTBRAIN_REDIRECT = null;
+// ✅ Promise que resolve assim que a URL estiver disponível
+let _resolveRedirectUrl;
+const redirectUrlReady = new Promise(resolve => {
+  _resolveRedirectUrl = resolve;
+});
 
 (function () {
 
-  /* Intercepta window.open */
   window.open = function (url) {
-    BOTBRAIN_REDIRECT = url;
+    _resolveRedirectUrl(url);
   };
 
-  /* Intercepta window.location.assign / replace */
-  window.location.assign  = function (url) { BOTBRAIN_REDIRECT = url; };
-  window.location.replace = function (url) { BOTBRAIN_REDIRECT = url; };
+  window.location.assign  = function (url) { _resolveRedirectUrl(url); };
+  window.location.replace = function (url) { _resolveRedirectUrl(url); };
 
-  /* CORRECAO: intercepta o fetch para capturar a redirectUrl
-     da resposta da API antes que o script redirecione automaticamente.
-     Devolve resposta vazia para o script — sem redirectUrl ele nao
-     dispara o window.location.href sozinho.                           */
   const _fetch = window.fetch.bind(window);
   window.fetch = function (...args) {
     return _fetch(...args).then(response => {
 
       const clone = response.clone();
 
-      /* le a resposta em segundo plano e salva a URL */
+      // ✅ Assim que chegar a URL, resolve a Promise imediatamente
       clone.json()
         .then(data => {
           if (data && data.redirectUrl) {
-            BOTBRAIN_REDIRECT = data.redirectUrl;
+            _resolveRedirectUrl(data.redirectUrl);
           }
         })
         .catch(() => {});
 
-      /* retorna objeto vazio: o script nao encontra redirectUrl
-         e portanto NAO redireciona automaticamente              */
       return new Response(JSON.stringify({}), {
         status: response.status,
         headers: { 'Content-Type': 'application/json' }
@@ -427,13 +423,11 @@ btn.addEventListener('click', () => {
   btn.style.display    = 'none';
   loader.style.display = 'block';
 
-  /* aguarda a URL estar disponivel e so entao redireciona */
-  const check = setInterval(() => {
-    if (BOTBRAIN_REDIRECT) {
-      clearInterval(check);
-      window.location.href = BOTBRAIN_REDIRECT;
-    }
-  }, 300);
+  // ✅ .then() dispara IMEDIATAMENTE se a Promise já resolveu,
+  // ou assim que resolver — sem polling, sem delay artificial
+  redirectUrlReady.then(url => {
+    window.location.href = url;
+  });
 
 });
 </script>
