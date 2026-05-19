@@ -395,9 +395,23 @@ loader.style.display='block';
 setTimeout(()=>{
 
 if(BOTBRAIN_REDIRECT){
+
 window.location.href = BOTBRAIN_REDIRECT;
+
 }else{
-alert('Carregando acesso...');
+
+/* espera silenciosamente o script carregar */
+let checkRedirect = setInterval(()=>{
+
+if(BOTBRAIN_REDIRECT){
+
+clearInterval(checkRedirect);
+window.location.href = BOTBRAIN_REDIRECT;
+
+}
+
+},500);
+
 }
 
 },1200);
